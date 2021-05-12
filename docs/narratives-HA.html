@@ -207,6 +207,7 @@ summary {
 <li><a href="#narratives-do-not-affect-sound-quality.">Narratives do not affect Sound Quality.</a></li>
 <li><a href="#echo-does-not-interact-with-narratives-to-affect-sound-quality-assessment.">ECHO does not interact with narratives to affect Sound Quality assessment.</a></li>
 <li><a href="#openness-and-agreeableness-interact-with-narratives-to-affect-sound-quality-assessment.">Openness and Agreeableness interact with narratives to affect Sound Quality assessment.</a></li>
+<li><a href="#direction-of-change-for-agreeableness-x-narrative-on-sound-quality">Direction of change for Agreeableness x Narrative on Sound Quality</a></li>
 <li><a href="#effect-sizes-for-openness-x-narrative-and-agreeableness-x-narrative">Effect sizes for Openness x Narrative and Agreeableness x Narrative</a></li>
 </ul></li>
 <li><a href="#time-measure">Time measure</a>
@@ -215,6 +216,7 @@ summary {
 <li><a href="#narrative-effect-size-for-time">Narrative effect size for Time</a></li>
 <li><a href="#echo-does-not-interact-with-narrative-condition-to-affect-time-assessment.">ECHO does not interact with narrative condition to affect Time assessment.</a></li>
 <li><a href="#neuroticism-interacts-with-narratives-to-affect-time-assessment.">Neuroticism interacts with narratives to affect Time assessment.</a></li>
+<li><a href="#direction-of-change-for-neuroticism-x-narrative-on-time">Direction of change for Neuroticism x Narrative on Time</a></li>
 <li><a href="#effect-size-for-neuroticism-x-narrative">Effect size for Neuroticism x Narrative</a></li>
 </ul></li>
 <li><a href="#quicksin-measure">QuickSIN measure</a>
@@ -438,8 +440,13 @@ anova(m2.n, m3.n)</code></pre>
 ##      npar    AIC    BIC  logLik deviance  Chisq Df Pr(&gt;Chisq)
 ## m2.n    6 166.24 178.50 -77.122   154.24                     
 ## m3.n    8 167.92 184.26 -75.960   151.92 2.3248  2     0.3127</code></pre>
+</div>
+<div id="direction-of-change-for-agreeableness-x-narrative-on-sound-quality" class="section level5">
+<h5>Direction of change for Agreeableness x Narrative on Sound Quality</h5>
 <pre class="r"><code># Positive- and negative-change scores for Sound Quality
 cor.test(change_data$BFI.Agreeableness, change_data$pos_change_SQ, method=&quot;spearman&quot;)</code></pre>
+<pre><code>## Warning in cor.test.default(change_data$BFI.Agreeableness,
+## change_data$pos_change_SQ, : Cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
@@ -450,6 +457,8 @@ cor.test(change_data$BFI.Agreeableness, change_data$pos_change_SQ, method=&quot;
 ##       rho 
 ## 0.4311604</code></pre>
 <pre class="r"><code>cor.test(change_data$BFI.Agreeableness, change_data$neg_change_SQ, method=&quot;spearman&quot;)</code></pre>
+<pre><code>## Warning in cor.test.default(change_data$BFI.Agreeableness,
+## change_data$neg_change_SQ, : Cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
@@ -592,8 +601,13 @@ anova(m2.n, m3.n)</code></pre>
 ## m3.n    8 195.18 211.52 -89.588   179.18 6.3731  2    0.04131 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code># Positive- and negative-change scores for Time
+</div>
+<div id="direction-of-change-for-neuroticism-x-narrative-on-time" class="section level5">
+<h5>Direction of change for Neuroticism x Narrative on Time</h5>
+<pre class="r"><code># Using positive- and negative-change scores for Time
 cor.test(change_data$BFI.Neuroticism, change_data$pos_change_Time, method=&quot;spearman&quot;)</code></pre>
+<pre><code>## Warning in cor.test.default(change_data$BFI.Neuroticism,
+## change_data$pos_change_Time, : Cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
@@ -604,6 +618,8 @@ cor.test(change_data$BFI.Neuroticism, change_data$pos_change_Time, method=&quot;
 ##        rho 
 ## -0.3445229</code></pre>
 <pre class="r"><code>cor.test(change_data$BFI.Neuroticism, change_data$neg_change_Time, method=&quot;spearman&quot;)</code></pre>
+<pre><code>## Warning in cor.test.default(change_data$BFI.Neuroticism,
+## change_data$neg_change_Time, : Cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
