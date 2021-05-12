@@ -214,6 +214,7 @@ summary {
 <li><a href="#narrative-effect-size-for-time">Narrative effect size for Time</a></li>
 <li><a href="#echo-does-not-interact-with-narrative-condition-to-affect-time-assessment.">ECHO does not interact with narrative condition to affect Time assessment.</a></li>
 <li><a href="#neuroticism-interacts-with-narratives-to-affect-time-assessment.">Neuroticism interacts with narratives to affect Time assessment.</a></li>
+<li><a href="#effect-size-for-neuroticism-x-narrative">Effect size for Neuroticism x Narrative</a></li>
 </ul></li>
 <li><a href="#quicksin-measure">QuickSIN measure</a>
 <ul>
@@ -256,7 +257,9 @@ change_data &lt;- data.frame(ID = pos$ID,
                           neg_change_QuickSIN = neg$QuickSIN - neu$QuickSIN,
                           BFI.Openness = pos$BFI.Openness, 
                           BFI.Agreeableness = pos$BFI.Agreeableness,
-                          BFI.Neuroticism = pos$BFI.Neuroticism)</code></pre>
+                          BFI.Neuroticism = pos$BFI.Neuroticism)
+
+rm(list = c(&#39;pos&#39;, &#39;neu&#39;, &#39;neg&#39;))</code></pre>
 </div>
 <div id="correlation-of-sound-quality-items" class="section level4">
 <h4>Correlation of Sound Quality items</h4>
@@ -455,6 +458,16 @@ cor.test(change_data$BFI.Agreeableness, change_data$pos_change_SQ, method=&quot;
 ## sample estimates:
 ##        rho 
 ## -0.1308581</code></pre>
+<div id="effect-sizes-for-openness-x-narrative-and-agreeableness-x-narrative" class="section level6">
+<h6>Effect sizes for Openness x Narrative and Agreeableness x Narrative</h6>
+<pre class="r"><code>r.squaredGLMM(object = m3.o, null = m2.o)</code></pre>
+<pre><code>## Warning: &#39;r.squaredGLMM&#39; now calculates a revised statistic. See the help page.</code></pre>
+<pre><code>##             R2m       R2c
+## [1,] 0.07959807 0.5527399</code></pre>
+<pre class="r"><code>r.squaredGLMM(object = m3.a, null = m2.a)</code></pre>
+<pre><code>##            R2m       R2c
+## [1,] 0.1746504 0.5580918</code></pre>
+</div>
 </div>
 </div>
 <div id="time-measure" class="section level4">
@@ -498,7 +511,7 @@ tapply(data$Time.Get.Used, list(Condition = data$Framing.Condition), mean)</code
 </div>
 <div id="narrative-effect-size-for-time" class="section level5">
 <h5>Narrative effect size for Time</h5>
-<pre class="r"><code># Get information to calculate eta-squared
+<pre class="r"><code># Effect size eta-squared for ANOVA design
 m &lt;- lmer(Time.Get.Used ~ Framing.Condition + (1 | ID), data, REML=FALSE)
 anova(m)</code></pre>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
@@ -506,11 +519,16 @@ anova(m)</code></pre>
 ## Framing.Condition  17.79  8.8947     2    38   8.136 0.001145 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code># Effect size, eta-squared
-F_to_eta2(f = 8.136, df = 2, df_error = 38, ci = 0.95)</code></pre>
+<pre class="r"><code>F_to_eta2(f = 8.136, df = 2, df_error = 38, ci = 0.95)</code></pre>
 <pre><code>## Eta2 (partial) |       95% CI
 ## -----------------------------
 ## 0.30           | [0.07, 0.49]</code></pre>
+<pre class="r"><code># Effect size pseudo-R-squared for linear mixed model
+m0 &lt;- lmer(Time.Get.Used ~ (1 | ID), data, REML=FALSE)
+m1 &lt;- lmer(Time.Get.Used ~ Framing.Condition + (1 | ID), data, REML=FALSE)
+r.squaredGLMM(object = m1, null = m0)</code></pre>
+<pre><code>##            R2m       R2c
+## [1,] 0.1516888 0.4779624</code></pre>
 </div>
 <div id="echo-does-not-interact-with-narrative-condition-to-affect-time-assessment." class="section level5">
 <h5>ECHO does not interact with narrative condition to affect Time assessment.</h5>
@@ -595,6 +613,12 @@ cor.test(change_data$BFI.Neuroticism, change_data$pos_change_Time, method=&quot;
 ##       rho 
 ## 0.1340997</code></pre>
 </div>
+<div id="effect-size-for-neuroticism-x-narrative" class="section level5">
+<h5>Effect size for Neuroticism x Narrative</h5>
+<pre class="r"><code>r.squaredGLMM(object = m3.n, null = m2.n)</code></pre>
+<pre><code>##            R2m       R2c
+## [1,] 0.2411336 0.5592612</code></pre>
+</div>
 </div>
 <div id="quicksin-measure" class="section level4">
 <h4>QuickSIN measure</h4>
@@ -637,7 +661,7 @@ tapply(data2$QuickSIN, list(Condition = data2$Framing.Condition), mean)</code></
 </div>
 <div id="narrative-effect-size-for-quicksin" class="section level5">
 <h5>Narrative effect size for QuickSIN</h5>
-<pre class="r"><code># Get information to calculate eta-squared
+<pre class="r"><code># Effect size, eta-squared, for ANOVA design
 m &lt;- lmer(QuickSIN ~ Framing.Condition + (1 | ID), data2, REML=FALSE)
 anova(m)</code></pre>
 <pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
@@ -645,11 +669,16 @@ anova(m)</code></pre>
 ## Framing.Condition 30.292  15.146     2    32  5.5682 0.008412 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code># Effect size, eta-squared
-F_to_eta2(f = 5.5682, df = 2, df_error = 32, ci = 0.95)</code></pre>
+<pre class="r"><code>F_to_eta2(f = 5.5682, df = 2, df_error = 32, ci = 0.95)</code></pre>
 <pre><code>## Eta2 (partial) |       95% CI
 ## -----------------------------
 ## 0.26           | [0.02, 0.47]</code></pre>
+<pre class="r"><code># Effect size pseudo-R-squared for linear mixed model
+m0 &lt;- lmer(QuickSIN ~ (1 | ID), data2, REML=FALSE)
+m1 &lt;- lmer(QuickSIN ~ Framing.Condition + (1 | ID), data2, REML=FALSE)
+r.squaredGLMM(object = m1, null = m0)</code></pre>
+<pre><code>##             R2m       R2c
+## [1,] 0.09711218 0.5901494</code></pre>
 </div>
 <div id="echo-does-not-interact-with-narratives-to-affect-quicksin." class="section level5">
 <h5>ECHO does not interact with narratives to affect QuickSIN.</h5>
