@@ -207,6 +207,7 @@ summary {
 <li><a href="#narratives-do-not-affect-sound-quality.">Narratives do not affect Sound Quality.</a></li>
 <li><a href="#echo-does-not-interact-with-narratives-to-affect-sound-quality-assessment.">ECHO does not interact with narratives to affect Sound Quality assessment.</a></li>
 <li><a href="#openness-and-agreeableness-interact-with-narratives-to-affect-sound-quality-assessment.">Openness and Agreeableness interact with narratives to affect Sound Quality assessment.</a></li>
+<li><a href="#effect-sizes-for-openness-x-narrative-and-agreeableness-x-narrative">Effect sizes for Openness x Narrative and Agreeableness x Narrative</a></li>
 </ul></li>
 <li><a href="#time-measure">Time measure</a>
 <ul>
@@ -458,8 +459,9 @@ cor.test(change_data$BFI.Agreeableness, change_data$pos_change_SQ, method=&quot;
 ## sample estimates:
 ##        rho 
 ## -0.1308581</code></pre>
-<div id="effect-sizes-for-openness-x-narrative-and-agreeableness-x-narrative" class="section level6">
-<h6>Effect sizes for Openness x Narrative and Agreeableness x Narrative</h6>
+</div>
+<div id="effect-sizes-for-openness-x-narrative-and-agreeableness-x-narrative" class="section level5">
+<h5>Effect sizes for Openness x Narrative and Agreeableness x Narrative</h5>
 <pre class="r"><code>r.squaredGLMM(object = m3.o, null = m2.o)</code></pre>
 <pre><code>## Warning: &#39;r.squaredGLMM&#39; now calculates a revised statistic. See the help page.</code></pre>
 <pre><code>##             R2m       R2c
@@ -467,7 +469,6 @@ cor.test(change_data$BFI.Agreeableness, change_data$pos_change_SQ, method=&quot;
 <pre class="r"><code>r.squaredGLMM(object = m3.a, null = m2.a)</code></pre>
 <pre><code>##            R2m       R2c
 ## [1,] 0.1746504 0.5580918</code></pre>
-</div>
 </div>
 </div>
 <div id="time-measure" class="section level4">
